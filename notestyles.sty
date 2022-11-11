@@ -1,0 +1,109 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{notestyles}[2022/11/11 Kayzels Notes Styles]
+
+% Maths
+\RequirePackage{amssymb}
+\RequirePackage{amsmath}
+
+% Lists
+\RequirePackage{enumitem}
+
+% Language Settings
+\RequirePackage[english=nohyphenation]{hyphsubst}
+\RequirePackage[english]{babel}
+\setlocalecaption{english}{chapter}{Unit}
+\sloppy
+
+% Bookmarks
+\RequirePackage{hyperref}
+\RequirePackage[numbered]{bookmark}
+
+% Headers, Footers and Margins
+\RequirePackage[margin=2cm, vmargin=3cm]{geometry}
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\nouppercase{\rightmark}}
+\fancyhead[LO,RE]{\leftmark}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\parindent}{0cm}
+\RequirePackage{multicol}
+
+% Fonts
+\RequirePackage[T1]{fontenc}
+\RequirePackage{charter}
+\RequirePackage[varqu,varl]{inconsolata}
+\RequirePackage[type1]{cabin}
+\RequirePackage[xcharter]{newtxmath}
+\RequirePackage{bm}
+
+% Colors
+\RequirePackage[dvipsnames,table]{xcolor}
+\colorlet{example color}{blue!15!white}
+\colorlet{example title}{black}
+\colorlet{definition color}{Aquamarine!30!white}
+\colorlet{definition border}{Aquamarine!75!black}
+\colorlet{note border}{red!75!black}
+\colorlet{exercise color}{orange!25!white}
+\colorlet{exercise border}{orange!75!black}
+
+% Bold Math
+\let\oldtextbf\textbf
+\renewcommand{\textbf}[1]{\oldtextbf{\boldmath #1}}
+
+% Tables
+\RequirePackage{tabularray}
+\UseTblrLibrary{booktabs}
+\UseTblrLibrary{varwidth}
+\SetTblrInner[tblr]{measure=vbox}
+\newcommand{\nl}{\\}
+
+% Color Boxes
+\RequirePackage{parskip}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{breakable}
+\RequirePackage{adjustbox}
+\newenvironment{example}[1][]
+	{\tcolorbox[coltitle=example title, colback=example color, breakable, detach title, before upper={\tcbtitle\quad}, title=\textbf{Example}, parbox=false, center, #1]}
+	{\endtcolorbox}
+\newenvironment{definition}[2][]
+	{\tcolorbox[breakable, colback=definition color, colframe=definition border, fonttitle=\bfseries, title={#2}, center title, parbox=false, center, #1]}
+	{\endtcolorbox}
+\newenvironment{sidenote}[2][]
+	{\tcolorbox[breakable, colback=note color, colframe=note border, fonttitle=\bfseries, title={#2}, center title, parbox=false, center, #1]}
+	{\endtcolorbox}
+\newenvironment{exercise}[2][]
+	{\tcolorbox[breakable, colback=exercise color, colframe=exercise border, fonttitle=\bfseries, title={#2}, center title, parbox=false, center, #1]}
+	{\endtcolorbox}
+
+% Include/Input Subfiles
+\RequirePackage{xstring}
+\RequirePackage{subfiles}
+\newcommand{\addfile}[2][include]
+	{\clearpage\begingroup\pagestyle{empty}\cleardoublepage\endgroup%
+	 \IfEqCase{#1}{%
+			{include}{\subfileinclude{#2}}%
+			{input}{\subfile{#2}}
+	 }[\PackageError{addfile}{Undefined option to addfile: #1}{}]%
+	}
+
+% Indented Paragraphs
+\RequirePackage{changepage}
+\newenvironment{indentparagraph}{\begin{adjustwidth}{2em}{}}{\end{adjustwidth}}
+
+% Horizontal Rules at document ends
+\newcommand{\rulebookend}{\vbox{\hrule width \hsize \kern 1mm \hrule width \hsize height 2pt}%
+	\cfoot{}}
+\newcommand{\rulechapterend}{\noindent\rule{\textwidth}{0.4pt}%
+	\cfoot{}
+}
+
+% Questions, Concepts and Emphasis Styling
+\newcommand{\question}[1]{\textbf{#1}}
+\newcommand{\concept}[1]{\textbf{#1}}
+
+% TOC Page Number Spacing
+\makeatletter
+\renewcommand{\@pnumwidth}{1.75em} 
+\makeatother
