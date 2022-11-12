@@ -1,0 +1,170 @@
+\providecommand{\main}{..}
+\documentclass[\main/notes.tex]{subfiles}
+
+\begin{document}
+	\setcounter{chapter}{1}
+	\chapter{Determinants}
+		\section{Determinants by Cofactor Expansion}
+			\begin{definition}{Minors and Cofactors}
+				If $A$ is a square matrix, then the \concept{minor of entry $a_{ij}$} is denoted $M_{ij}$, and is defined to be the determinant of the submatrix that remains after the $i$th row and the $j$th column are deleted from $A$.
+
+				The number $(-1)^{i + j}M_{ij}$ is denoted by $C_{ij}$, and is called the \concept{cofactor of entry $a_{ij}$}.
+			\end{definition}
+			\begin{example}
+				Find the minor and cofactor of entry $a_{11}$ in the matrix:
+				\begin{align*}
+					A = \begin{bmatrix}
+						3 & 1 & -4\\
+						2 & 5 & 6\\
+						1 & 4 & 8
+					\end{bmatrix}
+				\end{align*}
+
+				To find the minor, remove the row and column indicated, so the first row and column. This gives us the matrix:
+				\begin{align*}
+					M_{11} = \begin{vmatrix}
+						5 & 6\\
+						4 & 8
+					\end{vmatrix} = 16
+				\end{align*}
+
+				To find the cofactor:
+				\begin{align*}
+					C_{11} &= (-1)^{1 + 1}M_{11}\\
+					&= M_{11}\\
+					&= 16
+				\end{align*}
+			\end{example}
+			\begin{sidenote}{Cofactors use a checkerboard of plus and minus}
+				\begin{align*}
+					\begin{bmatrix}
+						+ & - & + & - & + & \cdots\\
+						- & + & - & + & - & \cdots\\
+						+ & - & + & - & + & \cdots\\
+						- & + & - & + & - & \cdots\\
+						\vdots & \vdots & \vdots & \vdots & \vdots
+					\end{bmatrix}
+				\end{align*}
+			\end{sidenote}
+			\begin{definition}{General Determinant}
+				If $A$ is an $n \times n$ matrix, then the number obtained by multiplying the entries in any row or column of $A$ by the corresponding cofactors, and adding the resulting products is called the \concept{determinant of $A$}, and the sums themselves are called the \concept{cofactor expansions of A}.
+				\begin{align*}
+					\det(A) &= a_{1j}C_{1j} + a_{2j}C_{2j} + \cdots + a_{nj}C_{nj}\\
+					\det(A) &= a_{i1}C_{i1} + a_{i2}C_{i2} + \cdots + a_{in}C_{in}
+				\end{align*}
+			\end{definition}
+			\begin{sidenote}{Determinant of a Triangular Matrix}
+				For a triangular matrix, the determinant is just the product of all the entries in the main diagonal.
+			\end{sidenote}
+
+		\section{Evaluating Determinants by Row Reduction}
+			\begin{theorem}{Zero Rows}
+				Let $A$ be a square matrix. If $A$ has a row or column of zeros, then $\det(A) = 0$.
+			\end{theorem}
+			\begin{theorem}{Determinant of the Transpose}
+				Let $A$ be a square matrix. Then $\det(A) = \det(A^{T})$.
+			\end{theorem}
+			\begin{sidenote}{Elementary Row Operations and Determinants}
+				\begin{center}
+					\begin{tblr}{>{\raggedright}Xl| ll}
+						Matrix Operation & Notation & Effect on Determinant & Notation\\
+						\midrule
+						Multiply a row by $k$ & $kR_{i} \rightarrow R_{i}$ & Multiply determinant by $k$ & $\det(B) = k \cdot \det(A)$\\
+						Swap two rows & $R_{i} \leftrightarrow R_{j}$ & Multiply determinant by $-1$ & $\det(B) = - \det(A)$\\
+						Add a multiple of a row to another row & $R_{i} + kR_{j} \rightarrow R_{i}$ & Stays the same & $\det(B) = \det(A)$
+					\end{tblr}
+				\end{center}
+			\end{sidenote}
+			\pagebreak
+			\begin{sidenote}{Elementary Matrices and Determinants}
+				Let $E$ be an $n \times n$ elementary matrix.
+				\begin{enumerate}[label=(\alph*)]
+					\item If $E$ results from multiplying a row of $I_{n}$ by a nonzero number $k$, then $\det(E) = k$
+					\item If $E$ results from interchanging two rows of $I_{n}$, then $\det(E) = -1$
+					\item If $E$ results from adding a multiple of one row of $I_{n}$ to another, then $\det(E) = 1$
+				\end{enumerate}
+			\end{sidenote}
+			\begin{theorem}{Proportional Rows or Columns}
+				If $A$ is a square matrix with two or more proportional rows or columns, then $\det(A) = 0$.
+			\end{theorem}
+			\begin{definition}{Evaluating Determinants Using Row Reduction}
+				\begin{enumerate}
+					\item Simplify the matrix into triangular form. Remember the operations done to transform it.
+					\item Find the determinant of the triangular matrix, by multiplying the diagonals.
+					\item Multiply that determinant by the different factors used to manipulate it.
+				\end{enumerate}
+			\end{definition}
+
+		\section{Properties of Determinants}
+			\begin{theorem}{Determinants and Multiplying a Matrix by a Scalar}
+				Given a square matrix $A$ of size $n \times n$, and a scalar $k$, then
+				\begin{align*}
+					\det(kA) = k^{n}\det(A)
+				\end{align*}
+			\end{theorem}
+			\begin{sidenote}{Sums of Determinants}
+				It is \emph{not} always the case for determinants that $\det(A + B) = \det(A) + \det(B)$
+			\end{sidenote}
+			\begin{theorem}{Sums of Determinant Exception}
+				Let $A$, $B$ and $C$ be $n \times n$ matrices that differ only in a single row (eg. the $r$th row). Assume that the row (the $r$th row) of $C$ can be obtained by adding corresponding entries in the $r$th rows of $A$ and $B$. Then
+				\begin{align*}
+					\det(C) = \det(A) + \det(B)
+				\end{align*} 
+				The same result holds for columns.
+			\end{theorem}
+			\begin{theorem}{Determinant of a Matrix Product}
+				If $A$ and $B$ are square matrices of the same size, then
+				\begin{align*}
+					\det(AB) = \det(A) \cdot \det(B)
+				\end{align*}
+			\end{theorem}
+			\begin{theorem}{Determinant of an Invertible Matrix}
+				If $A$ is invertible, then
+				\begin{align*}
+					\det(A^{-1}) = \frac{1}{\det(A)}
+				\end{align*}
+			\end{theorem}
+			\begin{definition}{Matrix of Cofactors and Adjoints}
+				If $A$ is any $n \times n$ matrix, and $C_{ij}$ is the cofactor of $a_{ij}$, then the matrix:
+				\begin{align*}
+					\begin{bmatrix}
+						C_{11} & C_{12} & \cdots & C_{1n}\\
+						C_{21} & C_{22} & \cdots & C_{2n}\\
+						\vdots & \vdots & \ddots & \vdots\\
+						C_{n1} & C_{n2} & \cdots & C_{nn}
+					\end{bmatrix}
+				\end{align*}
+				is called the \concept{matrix of cofactors from A}. The transpose of this matrix is called the \concept{adjoint}, and is written $\adj(A)$.
+			\end{definition}
+			\begin{theorem}{Inverse of a matrix using its adjoint}
+				If $A$ is an invertible matrix, then
+				\begin{align*}
+					A^{-1} = \frac{1}{\det(A)} \cdot \adj(A)
+				\end{align*}
+			\end{theorem}
+
+		\section{Cramer's Rule}
+			\begin{definition}{Cramer's Rule}
+				If $A\mathbf{x} = \mathbf{b}$ is a system of $n$ linear equations in $n$ unknowns such that $\det(A) \neq 0$, then the system has a unique solution. The solution is:
+				\begin{align*}
+					x_{1} &= \frac{\det(A_{1})}{\det(A)}\\
+					x_{2} &= \frac{\det(A_{2})}{\det(A)}\\
+					&\vdots\\
+					x_{n} &= \frac{\det(A_{n})}{\det(A)}
+				\end{align*}
+				where $A_{j}$ is the matrix obtained by replacing the entries in the $j$th column of $A$ by the entries in the solution matrix $\mathbf{b}$:
+				\begin{align*}
+					\mathbf{b} = \begin{bmatrix}
+						b_{1}\\
+						b_{2}\\
+						\vdots\\
+						b_{n}
+					\end{bmatrix}
+				\end{align*}
+			\end{definition}
+
+		\section{Eigenvectors and Eigenvalues}
+			% TODO: COME BACK TO
+
+	\rulechapterend
+\end{document}
