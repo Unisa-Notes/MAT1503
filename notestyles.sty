@@ -44,9 +44,12 @@
 \colorlet{example title}{black}
 \colorlet{definition color}{Aquamarine!30!white}
 \colorlet{definition border}{Aquamarine!75!black}
+\colorlet{note color}{red!15!white}
 \colorlet{note border}{red!75!black}
 \colorlet{exercise color}{orange!25!white}
 \colorlet{exercise border}{orange!75!black}
+\colorlet{theorem color}{MidnightBlue!20!white}
+\colorlet{theorem border}{MidnightBlue!75!black}
 
 % Bold Math
 \let\oldtextbf\textbf
@@ -76,6 +79,9 @@
 \newenvironment{exercise}[2][]
 	{\tcolorbox[breakable, colback=exercise color, colframe=exercise border, fonttitle=\bfseries, title={#2}, center title, parbox=false, center, #1]}
 	{\endtcolorbox}
+\newenvironment{theorem}[2][]
+	{\tcolorbox[breakable, colback=theorem color, colframe=theorem border, fonttitle=\bfseries, title={#2}, center title, parbox=false, center #1]}
+	{\endtcolorbox}
 
 % Include/Input Subfiles
 \RequirePackage{xstring}
@@ -98,6 +104,11 @@
 \newcommand{\rulechapterend}{\noindent\rule{\textwidth}{0.4pt}%
 	\cfoot{}
 }
+
+% Images
+\RequirePackage{tikz}
+\usetikzlibrary{fit, backgrounds, topaths}
+\tikzstyle{every picture}+=[remember picture]
 
 % Questions, Concepts and Emphasis Styling
 \newcommand{\question}[1]{\textbf{#1}}

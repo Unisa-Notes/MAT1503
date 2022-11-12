@@ -6,12 +6,14 @@
 \begin{exercise}{title}
 \begin{indentparagraph}
 \begin{sidenote}{title}
+\begin{theorem}{title}
 \concept{text}
 \end{definition}
 \end{example}
 \end{exercise}
 \end{indentparagraph}
 \end{sidenote}
+\end{theorem}
 \question{text}
 \nl
 \rulebookend

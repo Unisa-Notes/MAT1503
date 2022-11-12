@@ -58,5 +58,6 @@ For intellisense, a list of the commands is added in the [package_intellisense](
 - `exercise {title}`: Colored box used to highlight exercises.
 - `indentparagraph`: Indent selected text to the left.
 - `sidenote`: Colored box used to indicate extra information.
+- `theorem`: Colored box used to write mathematical theorems.
 
 ---

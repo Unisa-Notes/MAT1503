@@ -22,5 +22,11 @@
     "detail": "sidenote{title}",
     "snippet": "{${1:title}}",
     "package": "notestyles"
+  },
+  "theorem{}": {
+    "name": "theorem",
+    "detail": "theorem{title}",
+    "snippet": "{${1:title}}",
+    "package": "notestyles"
   }
 }

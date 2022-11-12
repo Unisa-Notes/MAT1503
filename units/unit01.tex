@@ -1,0 +1,293 @@
+\providecommand{\main}{..}
+\documentclass[\main/notes.tex]{subfiles}
+
+\begin{document}
+	\chapter[Linear Equations and Matrices]{Systems of Linear Equations and Matrices}
+		\section{Introduction to Systems of Linear Equations}
+			\begin{definition}{Linear Equation}
+				An equation where every variable is only to the first power, and do not appear as arguments to non linear equations.
+
+				\begin{example}
+					The following are linear equations:
+					\begin{alignat*}{2}
+						x &= y & \qquad \qquad 2x + 3y + 4z &= 0\\
+						2 \pi \ln \left(e^{-\frac{1}{z}}\right) - 2y + z &= \ln(3) - x & x + 4y - 2z &= 0
+					\end{alignat*}
+				\end{example}
+			\end{definition}
+			\begin{sidenote}{Size matters for solutions}
+				For an element to be a solution, it needs the \emph{same number of coordinates} as the number of unknowns, and it must satisfy all the equations.
+			\end{sidenote}
+			\begin{definition}{Consistent and Inconsistent}
+				A system of linear equations can have either none, one, or infinitely many solutions. If the system has no solutions, it is \concept{inconsistent}. Otherwise it is \concept{consistent}.
+			\end{definition}
+			\begin{definition}{Elementary row operations}
+				\begin{enumerate}
+					\item Multiply an equation (row) by a nonzero constant ($kR_{i} \rightarrow R_{i}$)
+					\item Interchange two equations (rows) ($kR_{i} \leftrightarrow R_{j}$)
+					\item Add a multiple of one equation (row) to another ($R_{j} + kR_{i} \rightarrow R_{j}$)
+				\end{enumerate}
+			\end{definition}
+
+		\section{Gaussian Elimination}
+			\subsection{Echelon Forms}
+				\begin{definition}{Generalised Row-Echelon Form}
+					\begin{itemize}
+						\item Any rows consisting entirely of zeros are grouped together at the bottom
+						\item In any two successive rows that do not consist entirely of zeros, the first non-zero number occurs further to the right in the lower row
+					\end{itemize}
+				\end{definition}
+				\begin{definition}{Row-Echelon Form}
+					All the requirements of Generalised Row-Echelon Form, along with:
+					\begin{itemize}[nosep]
+						\item The first non-zero number in each row not entirely of zeros is a $1$ -- called the \concept{leading~1}.
+					\end{itemize}
+				\end{definition}
+				\begin{definition}{Reduced Row-Echelon Form}
+					All the requirements of Row-Echelon Form, along with:
+					\begin{itemize}
+						\item Each \emph{column} that contains a leading $1$ has zeros everywhere else in that column.
+					\end{itemize}
+				\end{definition}
+				\begin{definition}{System in Echelon Form}
+					The augmented matrix of the system is in generalised row-echelon form.
+				\end{definition}
+				\begin{definition}{Homogeneous Linear System}
+					The constant terms in all the equations are zero.
+					\begin{align*}
+						a_{11}x_{1} + a_{12}x_{2} + \cdots + a_{1n}x_{n} &= 0\\
+						a_{21}x_{1} + a_{22}x_{2} + \cdots + a_{2n}x_{n} &= 0
+					\end{align*}
+					Every homogeneous system is consistent, as they all have $x_{1} = 0$ etc. as a possible solution. This is called the \concept{trivial solution}.
+
+					If there is any solution to the system other than the trivial solution, then the system has infinitely many solutions.
+
+					A homogeneous system with more unknowns than equations has infinitely many solutions.
+				\end{definition}
+
+		\pagebreak
+		\section{Matrices and Matrix Operations}
+				\begin{definition}{Matrix}
+					A rectangular array of numbers. The numbers in the array are called the \concept{entries} in the matrix.
+				\end{definition}
+				\begin{itemize}
+					\item A matrix has $m$ rows and $n$ columns. The size is written as $m \times n$.
+					\item Two matrices are equal if they have the same size, and their corresponding entries are equal.
+					\item To add or subtract matrices of the same size, add or subtract their corresponding entries. Addition and subtraction on different size matrices is undefined.
+					\item The scalar multiple product of a matrix multiplies the scalar by each entry in the matrix.
+				\end{itemize}
+				\begin{definition}{Matrix Multiplication}
+					Let $A$ and $B$ both be matrices.
+					In order for the product \concept{$AB$} to be defined,
+					\begin{itemize}
+						\item The number of columns of $A$ needs to be equal to the number of rows of $B$, i.e. $A_{n} = B_{m}$.
+					\end{itemize}
+					If the product is defined, then it will result in a matrix that is the size $A_{m} \times B_{n}$.
+					\begin{center}
+						\tikz[baseline=(am.base)]\node[inner xsep=0pt] (am) {$A_{m}$}; $\times$ \tikz[baseline=(an.base)]\node[inner xsep=0pt] (an) {$A_{n}$}; $\quad \cdot \quad$ \tikz[baseline=(bm.base)]\node[inner xsep=0pt] (bm) {$B_{m}$}; $\times$ \tikz[baseline=(bn.base)]\node[inner xsep=0pt] (bn) {$B_{n}$}; $= A_{m} \times B_{n}$
+					\end{center}
+					\begin{tikzpicture}[overlay]
+						\draw[<->] (an.south) -- ++(0,-1.5ex) -| (bm.south);
+						\draw[<->] (am.south) -- ++(0,-2.5ex) -| (bn.south);
+					\end{tikzpicture}\\
+					When multiplying matrics, it is row of first multiplied by column of second.
+				\end{definition}
+				\begin{definition}{Transpose of a matrix}
+					Written $A^{T}$. The $n \times m$ matrix that results by interchanging the rows and columns of $A$.
+				\end{definition}
+				\begin{definition}{Trace of a matrix}
+					Written $\mathrm{tr}(A)$. The sum of the entries of the main diagoal of the matrix.
+				\end{definition}
+				\begin{sidenote}{Ratios}
+					Not in the textbook -- taken from the Assignment Video.
+
+					Given the augmented matrix: $ \begin{bmatrix}
+						a & b & c\\
+						d & e & f
+					\end{bmatrix}$
+
+					\begin{description}
+						\item[Infinitely Many] $ \dfrac{a}{d} = \dfrac{b}{e} = \dfrac{c}{f}$
+						\item[None] $ \dfrac{a}{d} = \dfrac{b}{e} \neq \dfrac{c}{f}$
+						\item[Unique] $ \dfrac{a}{d} \neq \dfrac{b}{e} \neq \dfrac{c}{f}$
+					\end{description}
+				\end{sidenote}
+
+		\pagebreak
+		\section{Inverses; Matrix Arithmetic}
+			\begin{sidenote}{Rules that do not apply in matrix arithmetic}
+				\begin{enumerate}[label=(\alph*)]
+					\item $AB$ is not always equal to $BA$. It can be, in which case we say they \concept{commute}.
+					\item $AB = AC$ does not imply that $B = C$. This is the case if $A$ is the identity matrix.
+					\item $AB = 0$ does not imply that $A = 0$ or $B = 0$.
+				\end{enumerate}
+			\end{sidenote}
+			\begin{sidenote}{Properties of Matrix Arithmetic}
+				\begin{enumerate}[label=(\alph*)]
+					\item $A + B = B + A$
+					\item $A + (B + C) = (A + B) + C$
+					\item $A(BC) = (AB)C$
+					\item $A(B + C) = AB + AC$
+					\item $(B + C)A = BA + CA$
+					\item $A(B - C) = AB - AC$
+					\item $(B - C)A = BA - CA$
+					\item $a(B + C) = aB + aC$
+					\item $a(B - C) = aB - aC$
+					\item $(a + b)C = aC + bC$
+					\item $(a - b)C = aC - bC$
+					\item $a(bC) = (ab)C$
+					\item $a(BC) = (aB)C = B(aC)$
+				\end{enumerate}
+			\end{sidenote}
+			\begin{definition}{Identity Matrix}
+				A square matrix with $1$'s on the main diagonal and zeros elsewhere. Denoted with the letter $I$, or $I_{n}$.
+			\end{definition}
+			\begin{theorem}{Identity Matrices and Reduced Row Echelon}
+				If $R$ is the reduced row echelon form of an $n \times n$ matrix, then either $R$ has a row of zeros, or $R$ is the identity matrix $I_{n}$.
+			\end{theorem}
+			\subsection{Inverse of a Matrix}
+				\begin{definition}{Invertible Matrix}
+					If $A$ is a square matrix, and a matrix $B$ of the same size can be found such that $AB = BA = I$, then $A$ is said to be \concept{invertible} (or \concept{nonsingular}), and $B$ is called the \concept{inverse} of $A$. If no such matrix $B$ can be found, then $A$ is said to be \concept{singular}.
+				\end{definition}
+				\begin{theorem}{Inverse of a $2 \times 2$ matrix}
+					The matrix
+					\begin{align*}
+						A &= \begin{bmatrix}
+							a & b\\
+							c & d
+						\end{bmatrix}
+					\end{align*}
+					is invertible iff $ad - bc \neq 0$, in which case the inverse is:
+					\begin{align*}
+						A^{-1} &= \frac{1}{ad-bc}\begin{bmatrix}
+							d & -b\\
+							-c & a
+						\end{bmatrix}
+					\end{align*}
+				\end{theorem}
+				\begin{definition}{Inverse Matrix Product}
+					If $A$ and $B$ are invertible matrices of the same size, then $AB$ is invertible, and
+					\begin{align*}
+						(AB)^{-1} &= B^{-1}A^{-1}
+					\end{align*}
+				\end{definition}
+				\begin{sidenote}{Properties of Inverse Matrix}
+					If $A$ is invertible, and $n$ is a nonnegative integer, then
+					\begin{enumerate}[label=(\alph*)]
+						\item $A^{-1}$ is invertible, and $(A^{-1})^{-1} = A$
+						\item $A^{n}$ is invertible, and $(A^{n})^{-1} = A^{-n} = (A^{-1})^{n}$
+						\item $kA$ is invertible for any nonzero scalar $k$, and $(kA)^{-1} = k^{-1}A^{-1}$
+					\end{enumerate}
+				\end{sidenote}
+			\subsection{Matrix Transposes}
+				\begin{sidenote}{Properties of Matrix Transpose}
+					If the sizes of the matrices are such that the stated operations can be performed, then:
+					\begin{enumerate}[label=(\alph*)]
+						\item $(A^{T})^{T} = A$
+						\item $(A + B)^{T} = A^{T} + B^{T}$
+						\item $(A - B)^{T} = A^{T} - B^{T}$
+						\item $(kA)^{T} = k \cdot A^{T}$
+						\item $(AB)^{T} = B^{T}A^{T}$
+					\end{enumerate}
+				\end{sidenote}
+
+		\section[Elementary Matrices]{Elementary Matrices and Finding the Inverse}
+			Different elementary row operations can be undone by doing an opposite row operation.
+			\begin{sidenote}{Elementary row operation Opposites}
+				\begin{enumerate}
+					\item Multiply an equation (row) by a nonzero constant ($kR_{i} \rightarrow R_{i}$)\\
+						Multiply a row by $1/k$ ($\frac{1}{k}R_{i} \rightarrow R_{i}$)
+					\item Interchange two equations (rows) ($kR_{i} \leftrightarrow R_{j}$)\\
+						Interchange the same two rows ($kR_{j} \leftrightarrow R_{i}$)
+					\item Add a multiple of one equation (row) to another ($R_{j} - kR_{i} \rightarrow R_{j}$)\\
+						Subtract (Add $-k$) that multiple of the equation from the row. 
+				\end{enumerate}
+			\end{sidenote}
+			\begin{definition}{Elementary Matrix}
+				A matrix that can be obtained by performing a single elementary row operation on an Identity Matrix.
+			\end{definition}
+			\begin{theorem}{Inverse Algorithm}
+				To find the inverse of an invertible matrix $A$, find a sequence of elementary row operations that reduces $A$ to the identity matrix, and then perform that same sequence of operations on $I_{n}$ to obtain $A^{-1}$.
+			\end{theorem}
+
+		\section[More]{More on Linear Systems and Invertible Matrices}
+			\begin{theorem}{Solving Linear Systems by Matrix Inversion}
+				If $A$ is an invertible $n \times n$ matrix, then for each $n \times 1$ matrix $\mathbf{b}$, the system of equations $A\mathbf{x} = \mathbf{b}$ has exactly one solution: $\mathbf{x} = A^{-1}\mathbf{b}$.
+			\end{theorem}
+			If there are two matrices with the same coefficients, but different results on the right, you can solve them at the same time, using row operations.
+			\begin{sidenote}{Equivalent Statements for Inverses}
+				If $A$ is an $n \times n$ matrix, then the following are equivalent:
+				\begin{enumerate}[label=(\alph*)]
+					\item $A$ is invertible.
+					\item $A\mathbf{x} = \mathbf{0}$ has only the trivial solution.
+					\item The reduced row echelon form of $A$ is $I_{n}$.
+					\item $A$ is expressible as the product of elementary matrices.
+					\item $A\mathbf{x} = b$ is consistent for every $n \times 1$ matrix $\mathbf{b}$.
+					\item $A\mathbf{x} = b$ has exactly one solution for every $n \times 1$ matrix $\mathbf{b}$.
+				\end{enumerate}
+			\end{sidenote}
+			\begin{theorem}{If the Product is invertible}
+				Let $A$ and $B$ be matrices of the same size. If $AB$ is invertible, then $A$ is invertible, and $B$ is invertible.
+			\end{theorem}
+			\begin{sidenote}{Determining Consistency by elimination}
+				Simplify a matrix until there is a complete row of $0$s. If the value on the right is a $0$, continue simplifying. If the value is not a $0$, the system is inconsistent.
+			\end{sidenote}
+
+		\section[Special Matrix Types]{Diagonal, Triangular, and Symmetric Matrices}
+			\begin{definition}{Diagonal Matrix}
+				A square matrix in which all the entries that are not on the main diagonal are zero. The entries on the main diagonal can be zero or not.
+				\begin{align*}
+					D &= \begin{bmatrix}
+						d1 & 0 & \cdots & 0\\
+						0 & d2 & \cdots & 0\\
+						\vdots & \vdots & \ddots & \vdots\\
+						0 & 0 & \cdots & d_{n}
+					\end{bmatrix}
+				\end{align*}
+
+				A diagonal matrix is invertible iff all of its diagonal entries are on zero. In that case, the inverse is:
+				\begin{align*}
+					D^{-1} &= \begin{bmatrix}
+						1/d1 & 0 & \cdots & 0\\
+						0 & 1/d2 & \cdots & 0\\
+						\vdots & \vdots & \ddots & \vdots\\
+						0 & 0 & \cdots & 1/d_{n}
+					\end{bmatrix}
+				\end{align*}
+			\end{definition}
+			\begin{definition}{Triangular Matrices}
+				\begin{description}[nosep]
+					\item[Lower triangular] All the entries above the main diagonal are zero.
+					\item[Upper triangular] All the entries below the main diagonal are zero.
+				\end{description}
+
+				Diagonal matrices are both upper and lower triangular. A square matrix in row echelon form is upper triangular.
+			\end{definition}
+			\begin{sidenote}{Triangular Matrices Properties}
+				\begin{enumerate}[label=(\alph*), nosep]
+					\item The transpose of a lower triangular matrix is upper triangular, and vice versa.
+					\item The product of lower triangular matrices is lower triangular, and the product of upper triangular matrices is upper triangular.
+					\item A triangular matrix is invertible iff its diagonal entries are all nonzero.
+					\item The inverse of an invertible lower triangular matrix is lower triangular, and the inverse of an invertible upper triangular matrix is upper triangular.
+				\end{enumerate}
+			\end{sidenote}
+			\begin{definition}{Symmetric Matrix}
+				A square matrix $A$ where $A = A^{T}$.
+			\end{definition}
+			\begin{sidenote}{Properties of symmetric matrices}
+				If $A$ and $B$ are symmetric matrices with the same size, and if $k$ is any scalar, then:
+				\begin{enumerate}[label=(\alph*), nosep]
+					\item $A^{T}$ is symmetric.
+					\item $A + B$ and $A - B$ are symmetric.
+					\item $kA$ is symmetric.
+				\end{enumerate}
+			\end{sidenote}
+			\begin{theorem}{Product of symmetric matrices}
+				The product of two symmetric matrices is symmetric iff the matrices commute. (That is, $AB = BA$).
+			\end{theorem}
+			\begin{theorem}{Inverse of Symmetric Matrix}
+				If $A$ is an invertible symmetric matrix, then $A^{-1}$ is symmetric.
+			\end{theorem}
+
+	\rulechapterend
+\end{document}
