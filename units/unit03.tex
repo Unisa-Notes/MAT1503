@@ -404,5 +404,41 @@
 				\begin{theorem}{Solution and Orthogonality}
 					If $A$ is an $m \times n$ matrix, then the solution set of the homogeneous linear system $A\mathbf{x} = \mathbf{0}$ consists of all vectors in $\mathbb{R}^{n}$ that are orhtogonal to every row vector in $A$.
 				\end{theorem}
+			\subsection{Equations Summary}
+				\begin{sidenote}{Equations of a Plane}
+					Let $\mathbf{n} = \left\langle a, b, c\right\rangle$ be a vector \emph{orthogonal} to the plane, and $\mathbf{r_{0}} = (x_{0}, y_{0}, z_{0})$ be a point on the plane. Let $\mathbf{v_{1}}$ and $\mathbf{v_{2}}$ be vectors parallel to the plane.
+					\begin{center}
+						\begin{tblr}{ll}
+							Point Normal: & $a(x - x_{0}) + b(y - y_{0}) + c(z - z_{0}) = 0$\\
+							General Form: & $ax + by + cz + d = 0$\\
+							Vector Form: & $\mathbf{n} \cdot (\mathbf{r} - \mathbf{r_{0}})$ \nl
+							$(a, b, c)(x - x_{0}, y - y_{0}, z - z_{0}) = 0$\\
+							Parametric Form: & $\mathbf{r} = \mathbf{r_{0}} + t_{1}\mathbf{v_{1}} + t_{2}\mathbf{v_{2}}$
+						\end{tblr}
+					\end{center}
+				\end{sidenote}
+				\begin{sidenote}{Equations of a Line in $2$-space}
+					Let $\mathbf{n} = \left\langle a, b, c\right\rangle$ be a vector \emph{parallel} to the line, and $\mathbf{r_{0}} = (x_{0}, y_{0}, z_{0})$ be a point on the line.
+					\begin{center}
+						\begin{tblr}{ll}
+							Point Normal: & $a(x - x_{0}) + b(y - y_{0}) = 0$\\
+							General Form: & $ax + by + c = 0$\\
+							Vector Form: & $\mathbf{n} \cdot (\mathbf{r} - \mathbf{r_{0}}) = 0$ \nl
+							$(a, b)(x - x_{0}, y - y_{0}) = 0$\\
+							Parametric Form: & $\mathbf{r} = \mathbf{r_{0}} + t\mathbf{n}$ \nl
+							$ (x, y) = (x_{0}, y_{0}) + t(a, b)$\\
+							Parametric Equations: & $x = x_{0} + at$ \nl
+							$y = y_{0} + bt$
+						\end{tblr}
+					\end{center}
+				\end{sidenote}
+			\subsection{Symmetric Equations}
+				\begin{definition}{Symmetric Equation}
+					The \concept{symmetric equations} of a line $L$ in $3$-space are given by:
+					\begin{align*}
+						\frac{x - x_{0}}{a} = \frac{y - y_{0}}{b} = \frac{z - z_{0}}{c}
+					\end{align*}
+					where $(x_{0}, y_{0}, z_{0})$ is a point passing through the line, and $\mathbf{v} = \left\langle a, b, c\right\rangle $ is a vector parallel to the line. This vector is called the \concept{direction vector}.
+				\end{definition}
 	\rulechapterend
 \end{document}
