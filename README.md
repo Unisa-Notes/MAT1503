@@ -60,4 +60,9 @@ For intellisense, a list of the commands is added in the [package_intellisense](
 - `sidenote`: Colored box used to indicate extra information.
 - `theorem`: Colored box used to write mathematical theorems.
 
+#### Mathematical Operators
+- `\adj`: Used to indicate the adjoint
+- `\proj`: Used to indicate the orthogonal projection of a vector
+- `\Area `: Used to indicate area
+
 ---
