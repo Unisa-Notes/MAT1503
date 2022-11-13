@@ -164,7 +164,27 @@
 			\end{definition}
 
 		\section{Eigenvectors and Eigenvalues}
-			% TODO: COME BACK TO
+			\begin{sidenote}{Eigenvector Equation}
+				For a square matrix $A$, some vector (called an \concept{eigenvector}) $\overrightarrow{\mathbf{v}}$ and some scalar (called an \concept{eigenvalue}) $\lambda$, the following is true:
+				\begin{align*}
+					A\overrightarrow{\mathbf{v}} = \lambda \overrightarrow{\mathbf{v}}
+				\end{align*}
+			\end{sidenote}
+			\begin{theorem}{Manipulating the formula to solve}
+				\begin{alignat*}{3}
+					& \qquad & A\mathbf{v} &= \lambda \mathbf{v}\\
+					& \Rightarrow \qquad & A\mathbf{v} &= \lambda I\mathbf{v}\\
+					& \Rightarrow \qquad & A\mathbf{v} - \lambda I\mathbf{v} &= 0\\
+					& \Rightarrow \qquad & (A - \lambda I)\mathbf{v} &= 0
+				\end{alignat*}
+
+				To solve for $\lambda$, use the determinant:
+				\begin{align*}
+					\det(A - \lambda I) = 0
+				\end{align*}
+
+				After finding $\lambda$, plug in the values known for the eigenvalue and the matrix, and simplify them to become a simultaneous equation. Then solve to get a parametric equation.
+			\end{theorem}
 
 	\rulechapterend
 \end{document}
