@@ -37,6 +37,8 @@ TeX packages that have been used are:
 - [tabularray](https://ctan.org/pkg/tabularray): Better table display and management.
   * Also uses libraries to simulate [booktabs](https://ctan.org/pkg/booktabs) and [varwidth](https://ctan.org/pkg/varwidth)
 - [tcolorbox](https://ctan.org/pkg/tcolorbox), [adjustbox](https://ctan.org/pkg/adjustbox): Create colored boxes for different environments
+- [tikz](https://ctan.org/pkg/tikz): Used for images.
+  * [pgfplots](https://ctan.org/pkg/pgfplots): Used to display axis.
 - [xcolor](https://ctan.org/pkg/xcolor): Used to get more colors
 - [xstring](https://ctan.org/pkg/xstring): Analyze strings given as arguments to an environment
 
@@ -64,5 +66,7 @@ For intellisense, a list of the commands is added in the [package_intellisense](
 - `\adj`: Used to indicate the adjoint
 - `\proj`: Used to indicate the orthogonal projection of a vector
 - `\Area `: Used to indicate area
+- `\Real`: Display text form of Re, instead of symbol from `\Re`
+- `\Imaginary`: Display text form of Im, instead of symbol from `\Im`
 
 ---
